@@ -174,7 +174,7 @@ plt.savefig('Dropbox (University of Michigan)/TWP/tangential-wasserstein-project
 ##################################################
 ############ barycenter approach
 
-
+""" failed attempt
 N = 2
 d = 2
 
@@ -195,4 +195,60 @@ plt.figure(1, (12, 4))
 plt.scatter(x1[:, 0], x1[:, 1], alpha=0.5)
 plt.scatter(x2[:, 0], x2[:, 1], alpha=0.5)
 plt.title('Distributions')
+"""
 
+
+f1 = 1 - plt.imread('Dropbox (University of Michigan)/TWP/tangential-wasserstein-projection/Test Images/apple.jpeg')[:, :, 2]
+f2 = 1 - plt.imread('Dropbox (University of Michigan)/TWP/tangential-wasserstein-projection/Test Images/pear.jpeg')[:, :, 2]
+f3 = 1 - plt.imread()[:, :, 2] # two more images needed
+f4 = 1 - plt.imread()[:, :, 2] # two more images needed (same comment as above)
+
+f1 = f1 / np.sum(f1)
+f2 = f2 / np.sum(f2)
+f3 = f3 / np.sum(f3)
+f4 = f4 / np.sum(f4)
+A = np.array([f1, f2, f3, f4])
+
+nb_images = 5
+
+# those are the four corners coordinates that will be interpolated by bilinear
+# interpolation
+v1 = np.array((1, 0, 0, 0))
+v2 = np.array((0, 1, 0, 0))
+v3 = np.array((0, 0, 1, 0))
+v4 = np.array((0, 0, 0, 1))
+
+
+fig, axes = plt.subplots(nb_images, nb_images, figsize=(7, 7))
+plt.suptitle('Wasserstein Barycenters in POT')
+cm = 'Blues'
+
+# regularization parameter
+reg = 0.004
+for i in range(nb_images):
+    for j in range(nb_images):
+        tx = float(i) / (nb_images - 1)
+        ty = float(j) / (nb_images - 1)
+
+        # weights are constructed by bilinear interpolation
+        tmp1 = (1 - tx) * v1 + tx * v2
+        tmp2 = (1 - tx) * v3 + tx * v4
+        weights = (1 - ty) * tmp1 + ty * tmp2
+
+        if i == 0 and j == 0:
+            axes[i, j].imshow(f1, cmap=cm)
+        elif i == 0 and j == (nb_images - 1):
+            axes[i, j].imshow(f3, cmap=cm)
+        elif i == (nb_images - 1) and j == 0:
+            axes[i, j].imshow(f2, cmap=cm)
+        elif i == (nb_images - 1) and j == (nb_images - 1):
+            axes[i, j].imshow(f4, cmap=cm)
+        else:
+            # call to barycenter computation
+            axes[i, j].imshow(
+                ot.bregman.convolutional_barycenter2d(A, reg, weights),
+                cmap=cm
+            )
+        axes[i, j].axis('off')
+plt.tight_layout()
+plt.show()
