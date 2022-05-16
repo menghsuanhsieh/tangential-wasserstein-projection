@@ -107,7 +107,7 @@ ot_sinkhorn = ot.da.SinkhornTransport(reg_e=1e-1)
 ot_sinkhorn.fit(Xs=Xs, Xt=Xt)
 
 # implementation forthcoming: Tangential wwasserstein projection
-## calculate transport plans
+## calculate transport plans with out implementation
 ## estimate optimal weights
 ## fit training values
 
@@ -166,3 +166,33 @@ plt.show()
 
 ##### export #######
 plt.savefig('Dropbox (University of Michigan)/TWP/tangential-wasserstein-projection/output comparison.png')
+
+
+
+
+
+##################################################
+############ barycenter approach
+
+
+N = 2
+d = 2
+
+I1 = plt.imread('Dropbox (University of Michigan)/TWP/tangential-wasserstein-projection/Test Images/apple.jpeg').astype(np.float64)[::4, ::4, 2]
+I2 = plt.imread('Dropbox (University of Michigan)/TWP/tangential-wasserstein-projection/Test Images/pear.jpeg').astype(np.float64)[::4, ::4, 2]
+
+sz = I2.shape[0]
+XX, YY = np.meshgrid(np.arange(sz), np.arange(sz))
+
+x1 = np.stack((XX[I1 == 0], YY[I1 == 0]), 1) * 1.0
+x2 = np.stack((XX[I2 == 0] + 80, -YY[I2 == 0] + 32), 1) * 1.0
+x3 = np.stack((XX[I2 == 0], -YY[I2 == 0] + 32), 1) * 1.0
+
+measures_locations = [x1, x2]
+measures_weights = [ot.unif(x1.shape[0]), ot.unif(x2.shape[0])]
+
+plt.figure(1, (12, 4))
+plt.scatter(x1[:, 0], x1[:, 1], alpha=0.5)
+plt.scatter(x2[:, 0], x2[:, 1], alpha=0.5)
+plt.title('Distributions')
+
