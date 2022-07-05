@@ -1,4 +1,6 @@
-# pip install cvxpy # install this on first try
+# !pip install cvxpy # install this on first try
+# !pip install pandas
+# !pip install pot
 
 import ot
 import pandas as pd
@@ -33,9 +35,7 @@ for k in range(len(csv_files)):
     
     # read the csv file
     df = pd.read_csv(csv_files[k])
-    
-    display(df)
-    
+        
     # store in dictionary
     files_dict[key] = df
 

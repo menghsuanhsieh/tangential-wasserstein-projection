@@ -13,7 +13,7 @@
 #SBATCH --mail-user=rexhsieh@umich.edu
 #SBATCH --mail-type=BEGIN,END
 
-module load python/3.9.7
+module load python3.8-anaconda/2021.05
 
 echo "Running from $(pwd)"
-python synthetic-controls-application.py
+python synthetic-controls-application.py sc-app.out
