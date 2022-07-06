@@ -41,7 +41,7 @@ for k in range(len(csv_files)):
 
 # defining target
 target = files_dict["MT"][["HINSCAID", "EMPSTAT", "UHRSWORK", "INCWAGE"]]
-target # view the target df
+# target # view the target df
 
 # defining controls
 control1 = files_dict["SC"][["HINSCAID", "EMPSTAT", "UHRSWORK", "INCWAGE"]]
@@ -178,54 +178,64 @@ def DSCreplicationV2(target, controls):
     for j in range(J-1):
         projection += weights[j+1]*G_list[j+1]
     
-    
     return(weights, projection)
-
-# testing below-------------------
-
-n1 = n2 = 100
-dim = 3
-
-covmat = np.zeros((dim, dim))
-np.fill_diagonal(covmat, 1)
-
-covmat2 = np.full((dim, dim), 0.3)
-np.fill_diagonal(covmat2, 1)
-
-covmat3 = np.full((dim, dim), 0.5)
-np.fill_diagonal(covmat3, 1)
-
-covmat4 = np.full((dim, dim), 0.8)
-np.fill_diagonal(covmat4, 1)
-
-a_ones, b_ones = np.ones((n1,)) / n1, np.ones((n2,)) / n2
-
-c1 = random.multivariate_normal(mean = [20, 20, 20], cov = covmat4, size = n1)
-c2 = random.multivariate_normal(mean = [100, 100, 100], cov = covmat4, size = n1)
-c3 = random.multivariate_normal(mean = [50, 50, 50], cov = covmat3, size = n1)
-cs = [c1, c2, c3]
-
-TARGET = random.multivariate_normal(mean = [25]*dim, cov = covmat, size = n1)
-
-type(cs[1])
-
-type(TARGET)
-
-ts = t.time()
-
-weights1, projection1 = DSCreplication(TARGET, cs)
-
-print(t.time() - ts)
-print(weights1)
 
 # full implementation and estimation=====================
 
-states_controls = [control1.iloc[0:2000,].to_numpy(), control2.iloc[0:1500,].to_numpy()]
+states_controls = [control1.to_numpy(), control2.to_numpy(), control3.to_numpy(), control4.to_numpy(), control5.to_numpy(), control6.to_numpy(), control7.to_numpy(), control8.to_numpy(), control9.to_numpy(), control10.to_numpy(), control11.to_numpy(), control12.to_numpy()]
 type(states_controls)
 
-target = target.iloc[0:1000,].to_numpy()
+target = target.to_numpy()
 
 weights_s, projection_s = DSCreplicationV2(target, states_controls)
 
 weights_s
 projection_s
+
+# projection rounding
+projection_s_rnd = projection_s[:,0:2].round(decimals = 0).astype('int64')
+
+# final projection
+projection_r_rnd = np.concatenate([projection_s_rnd, projection_s[2:4]], axis = 1)
+
+# save output
+pd.DataFrame(projection_r_rnd).to_csv("synthetic controls projection results.csv")
+pd.DataFrame(weights_s).to_csv("synthetic controls weights results.csv")
+
+
+# # testing below-------------------
+
+# n1 = n2 = 100
+# dim = 3
+
+# covmat = np.zeros((dim, dim))
+# np.fill_diagonal(covmat, 1)
+
+# covmat2 = np.full((dim, dim), 0.3)
+# np.fill_diagonal(covmat2, 1)
+
+# covmat3 = np.full((dim, dim), 0.5)
+# np.fill_diagonal(covmat3, 1)
+
+# covmat4 = np.full((dim, dim), 0.8)
+# np.fill_diagonal(covmat4, 1)
+
+# a_ones, b_ones = np.ones((n1,)) / n1, np.ones((n2,)) / n2
+
+# c1 = random.multivariate_normal(mean = [20, 20, 20], cov = covmat4, size = n1)
+# c2 = random.multivariate_normal(mean = [100, 100, 100], cov = covmat4, size = n1)
+# c3 = random.multivariate_normal(mean = [50, 50, 50], cov = covmat3, size = n1)
+# cs = [c1, c2, c3]
+
+# TARGET = random.multivariate_normal(mean = [25]*dim, cov = covmat, size = n1)
+
+# type(cs[1])
+
+# type(TARGET)
+
+# ts = t.time()
+
+# weights1, projection1 = DSCreplication(TARGET, cs)
+
+# print(t.time() - ts)
+# print(weights1)
