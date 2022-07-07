@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=36
 #SBATCH --mem=150g
-#SBATCH --time=01-00:00:00
+#SBATCH --time=2-00:00:00
  
 #SBATCH --account=rexhsieh0
 #SBATCH --partition=standard
