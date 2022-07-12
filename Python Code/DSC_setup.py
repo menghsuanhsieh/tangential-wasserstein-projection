@@ -19,10 +19,10 @@ import cvxpy as cp
 
 # ## Functions
 
-# In[22]:
+# In[62]:
 
 
-def baryc_proj(source, target, method = 'emd'):
+def baryc_proj(source, target, method):
     
     n1 = source.shape[0]
     n2 = target.shape[0]   
@@ -37,8 +37,7 @@ def baryc_proj(source, target, method = 'emd'):
         OTplan = ot.emd(a_ones, b_ones, M)
         
     elif method == 'entropic':
-        OTplan = ot.bregman.sinkhorn(a_ones, b_ones, M, reg = 5*1e-3)
-
+        OTplan = ot.bregman.sinkhorn_stabilized(a_ones, b_ones, M, reg = 5*1e-3)
     
     # initialization
     OTmap = np.empty((0, p))
@@ -47,19 +46,16 @@ def baryc_proj(source, target, method = 'emd'):
         
         # normalization
         OTplan[i,:] = OTplan[i,:] / sum(OTplan[i,:])
-
-        # calculate conditional expectation for each sample in the source dist.
+    
+        # conditional expectation
         OTmap = np.vstack([OTmap, (target.T @ OTplan[i,:])])
     
-    
     OTmap = np.array(OTmap)
-    full_sum = sum(sum((OTmap - source)**2)) # for optimization in later steps
     
-    
-    return(OTmap, full_sum)
+    return(OTmap)
 
 
-# In[23]:
+# In[63]:
 
 
 def DSCreplication(target, controls, method = 'emd'):
@@ -68,33 +64,38 @@ def DSCreplication(target, controls, method = 'emd'):
     d = target.shape[1]
     J = len(controls)
     
-
+    
     # Barycentric Projection
-    distances = []
     G_list = []
-    
     for i in range(len(controls)):
-        distances.append(baryc_proj(target, controls[i], method)[1])
-        G_list.append(baryc_proj(target, controls[i], method)[0])
-    
-    distances = np.array(distances)
+        G_list.append(baryc_proj(target, controls[i], method))
     
     
-    # Obtain Optimal Weights
+    # Function to optimize
+    def to_optimize(lambdas):
+                
+        ans = lambdas[0] * (G_list[0] - target)
+        for i in range(J-1):
+            ans += lambdas[i+1] * (G_list[i+1] - target)
+        
+        return sum(sum(ans**2)) / n
+
+    
+    # Obtain optimal weights
     mylambda = cp.Variable(J)
 
-    objective = cp.Minimize(distances@cp.square(mylambda) / n)
+    objective = cp.Minimize(to_optimize(mylambda))
     constraints = [mylambda >= 0, mylambda <= 1, cp.sum(mylambda) == 1]
+
     prob = cp.Problem(objective, constraints)
     prob.solve()
+
     
-    
-    # Generate Replication
     weights = mylambda.value
-    replication = weights[0]*G_list[0]
+    projection = weights[0]*G_list[0]
     for j in range(J-1):
-        replication += weights[j+1]*G_list[j+1]
+        projection += weights[j+1]*G_list[j+1]
     
     
-    return(weights, replication)
+    return(weights, projection)
 
