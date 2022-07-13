@@ -78,7 +78,7 @@ def DSCreplication(target, controls, method = 'emd'):
         for i in range(J-1):
             ans += lambdas[i+1] * (G_list[i+1] - target)
         
-        return sum(sum(ans**2)) / n
+        return sum(sum(ans**2)) / n ## need to define new value to put instead of n
 
     
     # Obtain optimal weights
