@@ -34,7 +34,7 @@ def baryc_proj(source, target, method):
     M /= M.max()
     
     if method == 'emd':
-        OTplan = ot.emd(a_ones, b_ones, M)
+        OTplan = ot.emd(a_ones, b_ones, M, numItermax = 1e7)
         
     elif method == 'entropic':
         OTplan = ot.bregman.sinkhorn_stabilized(a_ones, b_ones, M, reg = 5*1e-3)
