@@ -50,7 +50,7 @@ def baryc_proj(source, target, method):
         # conditional expectation
         OTmap = np.vstack([OTmap, (target.T @ OTplan[i,:])])
     
-    OTmap = np.array(OTmap)
+    OTmap = np.array(OTmap).astype('float32')
     
     return(OTmap)
 
