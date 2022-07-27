@@ -2,8 +2,6 @@
 
 Gunsilius, Hsieh, & Lee (2022) - simulations and application code
 
-Preprint at:
-
 
 Overview
 --------
@@ -19,7 +17,7 @@ Data Availability and Provenance Statements
 
 ### Details on each Data Source
 
-- For Lego image replication, the data can be downloaded from Kaggle: https://www.kaggle.com/datasets/joosthazelzet/lego-brick-images. In our repository, select `Lego` in the folder `data`, and the images used are contained therein. We kept the same file names for the files downloaded from the link above.
+- For Lego image replication, the data can be downloaded from Kaggle: https://www.kaggle.com/datasets/joosthazelzet/lego-brick-images. In our repository, select `Lego_bricks` in the folder `Data`, and the images used are contained therein. We kept the same file names for the files downloaded from the link above.
 
 Datafiles: `data/Lego`
 
@@ -33,7 +31,18 @@ Dataset list
 
 | Data file | Source | Notes    |Provided |
 |-----------|--------|----------|---------|
-| `data/Lego/.png` | Listed above | Control image | Yes |
+| `Data/Lego_bricks/0001.png` | Listed above | Target image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0040.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0080.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0120.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0160.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0200.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0240.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0280.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0320.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0360.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Lego_bricks/0400.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+
 
 Computational requirements
 ---------------------------
@@ -53,7 +62,7 @@ The simulations and applications were ran using Python/3.8.1.
 
 Approximate time needed to reproduce the analyses on a standard (CURRENT YEAR) desktop machine:
 
-- [ ] 3-14 days
+- [ ] 3-7 days
 
 #### Details
 
@@ -71,24 +80,22 @@ Description of programs/code
 Instructions to Replicators
 ---------------------------
 - Download the repository to your local computer.
-- Install docker desktop using link: https://docs.docker.com/get-docker/
-- Open terminal, if you use docker for the first time, type: `docker run -d -p 80:80 docker/getting-started`
-- Get the container of R 4.1.0 using pull command: `docker pull rocker/r-ver:4.1.0`
-- Go to the root dictionary (your local path of the root dictionary) and type: 
-  - `docker build -t analysis .`
-  - `docker run -v (your local path of the root dictionary’)/data/analysis:/home/results analysis`
+- Download Medicare data from the Dropbox folder (linked above) to the directory: `Data/Medicaid_Data`.
+- Run `Python Code/Mixed Gaussian Simulation.ipynb` for the Gaussian simulations.
+- Run `Python Code/Lego Block Simulation.py` for the Lego Brick image replication.
+- Run `Python Code/Medicaid.ipynb` for the Medicaid expansion application.
 
-The Rda and txt files will be stored in `data/analysis`
+The .png files will be stored in `Python Code` directory. The tables are generated within each .ipynb program.
 
-- Go to the dictionary `code/02_analysis` and change the local path in `table_gen.R`. Run the code and get results for tables.
 
 ### Details
 
-- `python/01_simulation/archive_functions.R`:
+- `Python Code/DSC_setup.py`: defines barycentric projection and projection method described in the main text.
+- `Python Code/Mixed Gaussian Simulation.ipynb`: contains the Gaussian simulations described in the main text.
+- `Python Code/Lego Block Simulation.py`: contains the Lego Brick image replication described in the main text.
+- `Python Code/Medicaid.ipynb`: contains the Medicaid expansion application described in the main text.
 
-Apart from `.ipynb`, it takes less than 5 minutes to finish running all the programs with 36 cores. `.ipynb` takes 8.5 hours to finish running with 36 cores.
-
-- `code/02_analysis/table_gen.R`: generating the results of all tables
+Apart from `Python Code/Lego Block Simulation.py`, it takes less than 5 minutes to finish running all the programs with 36 cores. Running `Python Code/Lego Block Simulation.py` takes 8.5 hours from start to finish with 36 cores.
 
 List of tables and programs
 ---------------------------
@@ -97,14 +104,17 @@ The provided code reproduces:
 
 - [ ] All tables in the paper
 
-| Figure/Table #    | Program                               | Line Number |
-|-------------------|---------------------------------------|-------------|
-| Table 1           | python/table_gen.R                    | 137, 146          | 
-| Table 2           | python/table_gen.R                    | 137, 146          | 
-| Table 3           | python/table_gen.R                    | 421, 422        | 
-| Figure 2           | python/table_gen.R                    | 421, 422        | 
-| Figure 3           | python/table_gen.R                    | 421, 422        | 
-| Figure 4           | python/table_gen.R                    | 421, 422        | 
-| Figure 5           | python/table_gen.R                    | 421, 422        | 
+| Figure/Table #     | Program                               |          Line (Block) Number |
+|------------------- |---------------------------------------|------------------------------|
+| Table 1            | Python Code/Mixed Gaussian Simulation.ipynb             | 8          | 
+| Table 2            | Python Code/Medicaid.ipynb                              | 9          | 
+| Table 3            | Python Code/Mixed Gaussian Simulation.ipynb             | 12         | 
+| Figure 2 (Right)   | Python Code/Lego Block Simulation.py                    | 152        | 
+| Figure 3 (Weights) | Python Code/Lego Block Simulation.py                    | 144        | 
+| Figure 4           | Python Code/Medicaid.ipynb                              | 19, 20     | 
+| Figure 5           | Python Code/Medicaid.ipynb                              | 21, 22     | 
 
 ## References
+
+Steven Ruggles, Sarah Flood, Ronald Goeken, Megan Schouweiler and Matthew Sobek. IPUMS USA: Version 12.0 [dataset]. Minneapolis, MN: IPUMS, 2022. 
+https://doi.org/10.18128/D010.V12.0
