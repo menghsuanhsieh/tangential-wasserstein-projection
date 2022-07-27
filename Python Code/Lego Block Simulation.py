@@ -121,8 +121,7 @@ def reshaped_image(file_name, sample = False):
 import os, glob
 imglist = []
 
-path = 'Users/pablomjlee/Documents/DSC/workingData'
-for file in sorted(glob.glob("workingData/*.png")):
+for file in sorted(glob.glob("Data/Lego Block/*.png")):
     imglist.append(reshaped_image(file))
     
     
