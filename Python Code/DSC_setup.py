@@ -89,8 +89,8 @@ def DSCreplication(target, controls, method = 'emd'):
     prob.solve()
     
     weights = mylambda.value
-    replication = sum([a*b for a,b in zip(weights, G_list)])
+    projection = sum([a*b for a,b in zip(weights, G_list)])
     
     
-    return(weights, replication)
+    return(weights, projection)
 
