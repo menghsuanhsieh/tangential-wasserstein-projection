@@ -20,7 +20,7 @@ Data Availability and Provenance Statements
 
 - For Lego image replication, the data can be downloaded from Kaggle: https://www.kaggle.com/datasets/joosthazelzet/lego-brick-images. In our repository, select `Lego_bricks` in the folder `Data`, and the images used are contained therein. We kept the same file names for the files downloaded from the link above.
 
-Datafiles: `data/Lego_bricks`
+Datafiles: `Data/Lego_bricks`
 
 - For Medicaid expansion application, the data can be downloaded from IPUMS: https://usa.ipums.org/usa/. We downloaded the variables stated in the main text: HINSCAID, EMPSTAT, UHRSWORK, INCWAGE. We selected additional technical person-level ID variables to allow us to select household head and spouse (if any). We applied further sample selection criteria mentioned in Appendix B.2 of the accompanying paper.
 
@@ -83,7 +83,8 @@ Description of programs/code
 Instructions to Replicators
 ---------------------------
 - Download the repository to your local computer.
-- Download Medicare data from the Dropbox folder (linked above) to the directory: `Data/Medicaid_Data`.
+- Download Medicare data from the `Medicaid Data/Pre-Intervention Data` subfolder on Dropbox (linked above) to the directory: `Data/Medicaid_Data`.
+- Download Medicare data from the `Medicaid Data/Counterfactual Data` subfolder on Dropbox (linked above) to the directory: `Data/Medicaid_Data/Counterfactual`.
 - Run `Python Code/Mixed Gaussian Simulation.ipynb` for the Gaussian simulations.
 - Run `Python Code/Lego Block Simulation.py` for the Lego Brick image replication.
 - Run `Python Code/Medicaid.ipynb` for the Medicaid expansion application.
