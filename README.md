@@ -1,6 +1,6 @@
 # Tangetial Wasserstein Projection
 
-Gunsilius, Hsieh, & Lee (2022)
+Gunsilius, Hsieh & Lee (2022)
 
 
 Overview
