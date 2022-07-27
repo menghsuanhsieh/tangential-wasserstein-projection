@@ -43,7 +43,7 @@ Dataset list
 | `Data/Lego_bricks/0320.png` | Listed above | Control image in Section 4.2 of main text | Yes |
 | `Data/Lego_bricks/0360.png` | Listed above | Control image in Section 4.2 of main text | Yes |
 | `Data/Lego_bricks/0400.png` | Listed above | Control image in Section 4.2 of main text | Yes |
-| `Data/Medicaid_Data/` | Listed above | ACS data used to obtain optimal weights $ \lambda^* $ | Yes; in Dropbox folder above |
+| `Data/Medicaid_Data/` | Listed above | ACS data used to obtain optimal weights lambda star | Yes; in Dropbox folder above |
 | `Data/Medicaid_Data/Counterfactual` | Listed above | ACS data used to obtain counterfactual distributions in Section 4.3 | Yes; in Dropbox folder above |
 
 
