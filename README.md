@@ -1,12 +1,13 @@
 # Tangetial Wasserstein Projection
 
-Gunsilius, Hsieh, & Lee (2022) - simulations and application code
+Gunsilius, Hsieh, & Lee (2022)
 
 
 Overview
 --------
 
-The code in this repository constructs the results and plots found in the accompanying paper, available at: .
+The code in this repository constructs the results, plots, and tables found in the accompanying paper, available at LINK.
+
 
 Data Availability and Provenance Statements
 ----------------------------
@@ -19,7 +20,7 @@ Data Availability and Provenance Statements
 
 - For Lego image replication, the data can be downloaded from Kaggle: https://www.kaggle.com/datasets/joosthazelzet/lego-brick-images. In our repository, select `Lego_bricks` in the folder `Data`, and the images used are contained therein. We kept the same file names for the files downloaded from the link above.
 
-Datafiles: `data/Lego`
+Datafiles: `data/Lego_bricks`
 
 - For Medicaid expansion application, the data can be downloaded from IPUMS: https://usa.ipums.org/usa/. We downloaded the variables stated in the main text: HINSCAID, EMPSTAT, UHRSWORK, INCWAGE. We selected additional technical person-level ID variables to allow us to select household head and spouse (if any). We applied further sample selection criteria mentioned in Appendix B.2 of the accompanying paper.
 
@@ -42,6 +43,8 @@ Dataset list
 | `Data/Lego_bricks/0320.png` | Listed above | Control image in Section 4.2 of main text | Yes |
 | `Data/Lego_bricks/0360.png` | Listed above | Control image in Section 4.2 of main text | Yes |
 | `Data/Lego_bricks/0400.png` | Listed above | Control image in Section 4.2 of main text | Yes |
+| `Data/Medicaid_Data/` | Listed above | ACS data used to obtain optimal weights $ \lambda^* $ | Yes; in Dropbox folder above |
+| `Data/Medicaid_Data/Counterfactual` | Listed above | ACS data used to obtain counterfactual distributions in Section 4.3 | Yes; in Dropbox folder above |
 
 
 Computational requirements
