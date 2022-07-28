@@ -15,12 +15,12 @@ import cvxpy as cp
 
 def baryc_proj(source, target, method):
     
-    # This function obtains the barycentric projection of the
-    # transport plan
+    # This function obtains the barycentric projection of the transport plan
     
     ## Output
     #####
-    # OTmap: a new distribution indexed in the order of
+    # OTmap: barycentric projection of the transport plan;
+    #        Each row is the data point to which the source data points are transported
     
     ## Parameters
     #####
@@ -29,8 +29,8 @@ def baryc_proj(source, target, method):
     # method: default = 'emd'
     #   'emd': uses the earth mover's distance solution
     #   'entropic': uses the entropic regularized OT solution
-    #   Note: the entropic version may be unstable and very slow.
-    #         the emd version is recommended.
+    # Note: the entropic version may be unstable and very slow.
+    #       the emd version is recommended.
     
     
     n1 = source.shape[0]
