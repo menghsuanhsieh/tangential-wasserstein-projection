@@ -109,7 +109,7 @@ List of tables and programs
 The provided code reproduces:
 
 - [ ] All tables in the paper
-- [ ] Figures 2 through 5 in the paper
+- [ ] Figures 2 through 7 in the paper
 
 | Figure/Table #     | Program                               |          Line (Block) Number |
 |------------------- |---------------------------------------|------------------------------|
