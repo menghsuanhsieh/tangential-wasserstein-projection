@@ -16,7 +16,7 @@ Data Availability and Provenance Statements
 
 - [ ] All data used herein are publicly available.
 
-### Details on each Data Source
+### Details on Each Data Source
 
 - For Lego image replication, the data can be downloaded from Kaggle: https://www.kaggle.com/datasets/joosthazelzet/lego-brick-images. In our repository, select `Lego_bricks` in the folder `Data`, and the images used are contained therein. We kept the same file names for the files downloaded from the link above.
 
@@ -58,6 +58,7 @@ The simulations and applications were ran using Python/3.8.1.
   - numpy
   - matplotlib
   - pandas
+  - seaborn
 
 ### Memory and Runtime Requirements
 
@@ -69,9 +70,9 @@ Approximate time needed to reproduce the analyses on a standard (CURRENT YEAR) d
 
 #### Details
 
-The code was last run on a **4-core Apple-based laptop with MacOS version 12.4**. 
+The code was last run on a **8-core Apple-based laptop with MacOS version 12.4**. 
 
-Portions of the code were last run on a **36-core Intel server with 180 GB of RAM**.  Computation took 2 hours. 
+Portions of the code were last run on a **36-core Intel server with 180 GB of RAM**. Computation took 2 hours. 
 
   
 Description of programs/code
@@ -85,11 +86,12 @@ Instructions to Replicators
 - Download the repository to your local computer.
 - Download Medicare data from the `Medicaid Data/Pre-Intervention Data` subfolder on Dropbox (linked above) to the directory: `Data/Medicaid_Data`.
 - Download Medicare data from the `Medicaid Data/Counterfactual Data` subfolder on Dropbox (linked above) to the directory: `Data/Medicaid_Data/Counterfactual`.
+- Move the `Data` folder to the `Python Code` subdirectory.
 - Run `Python Code/Mixed Gaussian Simulation.ipynb` for the Gaussian simulations.
 - Run `Python Code/Lego Block Simulation.py` for the Lego Brick image replication.
 - Run `Python Code/Medicaid.ipynb` for the Medicaid expansion application.
 
-The .png files will be stored in `Python Code` directory. The tables are generated within each .ipynb program.
+The .png files will be stored in `Python Code` subdirectory by default. The tables are generated within each .ipynb program. If you wish to save the .png files in alternative directories, please change the corresponding `plt.savefig()` commands in the programs.
 
 
 ### Details
@@ -99,7 +101,7 @@ The .png files will be stored in `Python Code` directory. The tables are generat
 - `Python Code/Lego Block Simulation.py`: contains the Lego Brick image replication described in the main text.
 - `Python Code/Medicaid.ipynb`: contains the Medicaid expansion application described in the main text.
 
-Apart from `Python Code/Lego Block Simulation.py`, it takes less than 5 minutes to finish running all the programs with 36 cores. Running `Python Code/Lego Block Simulation.py` takes 2 hours from start to finish with 36 cores.
+Apart from `Python Code/Lego Block Simulation.py`, it takes less than 5 minutes to finish running all the programs on a laptop with Apple M1 processor. Running `Python Code/Lego Block Simulation.py` takes 2 hours from start to finish on a cluster computer with 36 cores.
 
 List of tables and programs
 ---------------------------
