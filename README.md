@@ -71,7 +71,7 @@ Approximate time needed to reproduce the analyses on a standard (CURRENT YEAR) d
 
 The code was last run on a **4-core Apple-based laptop with MacOS version 12.4**. 
 
-Portions of the code were last run on a **36-core Intel server with 100 GB of RAM**.  Computation took 8.5 hours. 
+Portions of the code were last run on a **36-core Intel server with 180 GB of RAM**.  Computation took 8.5 hours. 
 
   
 Description of programs/code
