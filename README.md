@@ -77,7 +77,7 @@ Portions of the code were last run on a **36-core Intel server with 180 GB of RA
 Description of programs/code
 ----------------------------
 
-- Programs in `code/01_simulation` will perform simulation studys on all datasets referenced above and output the results in `data/analysis`. The `Dockerfile` in root dictionary will run them all. These programs will generate all tables and plots in the main text.
+- Programs in `Python Code` will perform all simulations and estimations described in the main text. These programs will also generate all tables and plots found therein.
 
 
 Instructions to Replicators
