@@ -82,7 +82,7 @@ def DSCreplication(target, controls, method = 'emd'):
 
     objective = cp.Minimize(
                     cp.sum_squares(
-                    cp.sum([a*b for a,b in zip(mylambda, proj_list)], axis = 0)**2)/S
+                    cp.sum([a*b for a,b in zip(mylambda, proj_list)], axis = 0))/S
                     )
     
     constraints = [mylambda >= 0, mylambda <= 1, cp.sum(mylambda) == 1]
