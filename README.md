@@ -65,13 +65,13 @@ The simulations and applications were ran using Python/3.8.1.
 
 Approximate time needed to reproduce the analyses on a standard (CURRENT YEAR) desktop machine:
 
-- [ ] 3-7 days
+- [ ] 1-3 days
 
 #### Details
 
 The code was last run on a **4-core Apple-based laptop with MacOS version 12.4**. 
 
-Portions of the code were last run on a **36-core Intel server with 180 GB of RAM**.  Computation took 8.5 hours. 
+Portions of the code were last run on a **36-core Intel server with 180 GB of RAM**.  Computation took 2 hours. 
 
   
 Description of programs/code
@@ -99,7 +99,7 @@ The .png files will be stored in `Python Code` directory. The tables are generat
 - `Python Code/Lego Block Simulation.py`: contains the Lego Brick image replication described in the main text.
 - `Python Code/Medicaid.ipynb`: contains the Medicaid expansion application described in the main text.
 
-Apart from `Python Code/Lego Block Simulation.py`, it takes less than 5 minutes to finish running all the programs with 36 cores. Running `Python Code/Lego Block Simulation.py` takes 8.5 hours from start to finish with 36 cores.
+Apart from `Python Code/Lego Block Simulation.py`, it takes less than 5 minutes to finish running all the programs with 36 cores. Running `Python Code/Lego Block Simulation.py` takes 2 hours from start to finish with 36 cores.
 
 List of tables and programs
 ---------------------------
