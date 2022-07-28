@@ -120,6 +120,8 @@ The provided code reproduces:
 | Figure 3 (Weights) | Python Code/Lego Block Simulation.py                    | 144        | 
 | Figure 4           | Python Code/Medicaid.ipynb                              | 19, 20     | 
 | Figure 5           | Python Code/Medicaid.ipynb                              | 21, 22     | 
+| Figure 6           | Python Code/Medicaid.ipynb                              | 10, 12     |
+| Figure 7           | Python Code/Medicaid.ipynb                              | 14, 15     |
 
 ## References
 
