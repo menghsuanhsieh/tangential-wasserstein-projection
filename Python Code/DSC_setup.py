@@ -1,8 +1,4 @@
-#!/usr/bin/env python
 # coding: utf-8
-
-# In[1]:
-
 
 import numpy as np
 import pandas as pd
@@ -17,15 +13,28 @@ import cvxpy as cp
 #import time as t
 
 
-# ## Functions
-
-# In[62]:
-
-
 def baryc_proj(source, target, method):
     
+    # This function obtains the barycentric projection of the
+    # transport plan
+    
+    ## Output
+    #####
+    # OTmap: a new distribution indexed in the order of
+    
+    ## Parameters
+    #####
+    # source: source distribution(array-like)
+    # target: target distribution(array-like)
+    # method: default = 'emd'
+    #   'emd': uses the earth mover's distance solution
+    #   'entropic': uses the entropic regularized OT solution
+    #   Note: the entropic version may be unstable and very slow.
+    #         the emd version is recommended.
+    
+    
     n1 = source.shape[0]
-    n2 = target.shape[0]   
+    n2 = target.shape[0]
     p = source.shape[1]
     a_ones, b_ones = np.ones((n1,)) / n1, np.ones((n2,)) / n2
     
@@ -47,7 +56,7 @@ def baryc_proj(source, target, method):
         # normalization
         OTplan[i,:] = OTplan[i,:] / sum(OTplan[i,:])
     
-        # conditional expectation
+        # obtain conditional expectation
         OTmap = np.vstack([OTmap, (target.T @ OTplan[i,:])])
     
     OTmap = np.array(OTmap).astype('float32')
@@ -55,10 +64,23 @@ def baryc_proj(source, target, method):
     return(OTmap)
 
 
-# In[63]:
 
 
 def DSCreplication(target, controls, method = 'emd'):
+    
+    # This function obtains the optimal weights and the projection.
+    
+    ## Output
+    #####
+    # weights: optimal weights(list object)
+    # projection: replication of the target distribution(numpy array)
+    
+    ## Parameters
+    #####
+    # target: target distribution(array-like)
+    # controls: control distributions(list of array-like objects)
+    # method: default = 'emd', parameter for `baryc_proj`
+    
     
     n = target.shape[0]
     d = target.shape[1]
@@ -80,7 +102,8 @@ def DSCreplication(target, controls, method = 'emd'):
 
     objective = cp.Minimize(
                     cp.sum_squares(
-                    cp.sum([a*b for a,b in zip(mylambda, proj_list)], axis = 0))/S
+                    cp.sum([a*b for a,b in zip(mylambda, proj_list)],
+                            axis = 0)**2)/S
                     )
     
     constraints = [mylambda >= 0, mylambda <= 1, cp.sum(mylambda) == 1]
@@ -90,7 +113,6 @@ def DSCreplication(target, controls, method = 'emd'):
     
     weights = mylambda.value
     projection = sum([a*b for a,b in zip(weights, G_list)])
-    
     
     return(weights, projection)
 
