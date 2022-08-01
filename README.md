@@ -1,4 +1,4 @@
-# Tangetial Wasserstein Projection
+# Tangetial Wasserstein Projections
 
 Gunsilius, Hsieh & Lee (2022)
 
@@ -6,7 +6,7 @@ Gunsilius, Hsieh & Lee (2022)
 Overview
 --------
 
-The code in this repository constructs the results, plots, and tables found in the accompanying paper, available at LINK.
+The code in this repository constructs the results, plots, and tables found in the accompanying paper, available at https://arxiv.org/abs/2207.14727.
 
 
 Data Availability and Provenance Statements
