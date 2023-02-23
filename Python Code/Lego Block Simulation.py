@@ -12,12 +12,15 @@ import matplotlib.pylab as plt
 import ot
 import ot.plot
 import cvxpy as cp
-
-import scipy.stats as stats
-import seaborn as sns
-import scipy.special as sps
-import time as t
+from PIL import Image
 import twp_utils as twp
+
+
+#import scipy.stats as stats
+#import seaborn as sns
+#import scipy.special as sps
+#import time as t
+
 
 
 # In[4]:
@@ -66,8 +69,6 @@ print(te)
 print(weightsb)
 
 # In[9]:
-from PIL import Image
-
 replicated = (replicationb.reshape((200,200,4))*255).astype('uint8')
 replicated = Image.fromarray(replicated, mode ='RGBA')
 
