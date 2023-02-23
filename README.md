@@ -96,7 +96,7 @@ The .png files will be stored in `Python Code` subdirectory by default. The tabl
 
 ### Details
 
-- `Python Code/DSC_setup.py`: defines barycentric projection and projection method described in the main text.
+- `Python Code/twp_utils.py`: defines barycentric projection and projection method described in the main text.
 - `Python Code/Mixed Gaussian Simulation.ipynb`: contains the Gaussian simulations described in the main text.
 - `Python Code/Lego Block Simulation.py`: contains the Lego Brick image replication described in the main text.
 - `Python Code/Medicaid.ipynb`: contains the Medicaid expansion application described in the main text.
