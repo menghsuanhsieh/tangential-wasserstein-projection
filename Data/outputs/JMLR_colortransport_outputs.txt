@@ -1,0 +1,5 @@
+Time to run TWP: -4936.848 seconds
+[-2.43728247e-17  6.07360251e-01 -1.03839589e-17  3.92639749e-01
+ -2.08674833e-17 -2.83034641e-17]
+Distance between TWP replication and target
+0.15939375434292816
